@@ -31,10 +31,8 @@ public class MoveBalls : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.IsPaused())
-        {
-            return;
-        }
+        if (GameManager.Instance.IsAnyWindowOpen()) return;
+
 
         if (_sections.Count == 0)
         {
@@ -42,11 +40,7 @@ public class MoveBalls : MonoBehaviour
             return;
         }
 
-        if (_sections[0].Balls[0].Distance >= _pathDistance)
-        {
-            //GameManager.Instance.Lose();
-            return;
-        }
+        //if (_sections[0].Balls[0].Distance >= _pathDistance) return;
 
         //if (_sections[0].Balls[0].Distance >= _pathDistance)
         //{

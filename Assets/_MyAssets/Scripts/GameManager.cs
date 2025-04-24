@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField, Range(1, 5)] private int _lifeCount;
 
     [Header("Windows")]
-    [SerializeField] private Transform _lifeWindow;
-    [SerializeField] private GameObject _gameOverWindow;
     [SerializeField] private GameObject _retryWindow;
     [SerializeField] private GameObject _winWindow;
     [SerializeField] private GameObject _pauseWindow;
@@ -32,44 +30,33 @@ public class GameManager : MonoBehaviour
         Instance = this;
         BgMath = FindObjectOfType<BGCcMath>();
         MoveBallsScript = FindObjectOfType<MoveBalls>();
-
-        Time.timeScale = 1;
     }
-    
-    private void Update()
+
+    public void OpenPauseBtn()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_gameOverWindow.activeSelf && !_retryWindow.activeSelf && !_winWindow.activeSelf)
-        {
-            if (_pauseWindow.activeSelf)
-            {
-                Time.timeScale = 1;
-                _pauseWindow.SetActive(false);
-            }
-            else
-            {
-                Time.timeScale = 0;
-                _pauseWindow.SetActive(true);
-            }
-        }
+        _pauseWindow.SetActive(true);
+    }
+
+    public void ClosePauseBtn()
+    {
+        _pauseWindow.SetActive(false);
     }
 
     public void Win()
     {
-        Time.timeScale = 0;
         _winWindow.SetActive(true);
     }
 
     public void Lose()
     {
-        Time.timeScale = 0;
-
         _retryWindow.SetActive(true);
     }
 
-    public bool IsPaused()
+    public bool IsAnyWindowOpen()
     {
-        return Time.timeScale == 0;
+        return _retryWindow.activeSelf || _winWindow.activeSelf || _pauseWindow.activeSelf;
     }
+
 
     public void MainMenuBtn_Click()
     {
@@ -84,12 +71,6 @@ public class GameManager : MonoBehaviour
     public void NextLevelBtn_Click()
     {
         SceneManager.LoadScene("GameScene");
-    }
-
-    public void ContinueBtn_Click()
-    {
-        Time.timeScale = 1;
-        _pauseWindow.SetActive(false);
     }
 
     public Sprite GetRandomSprite()

@@ -10,7 +10,6 @@ public class SceneFaderRx : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 1;
         StartCoroutine(FadeIn());
     }
 

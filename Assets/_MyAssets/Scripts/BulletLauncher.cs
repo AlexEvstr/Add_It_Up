@@ -19,7 +19,7 @@ public class BulletLauncher : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.IsPaused()) return;
+        if (GameManager.Instance.IsAnyWindowOpen()) return;
 
 #if UNITY_EDITOR
         var isTouching = Input.GetMouseButton(0);
