@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveBalls : MonoBehaviour
 {
     [SerializeField] private GameObject _ballPrefab;
-
+    [SerializeField] private BulletLauncher _bulletLauncher;
     private float _pathDistance;
     private float _ballDiameter;
     private List<BallSection> _sections;
@@ -172,7 +172,7 @@ public class MoveBalls : MonoBehaviour
             _sections.Insert(sectionIndex, new BallSection(sectionBalls.Take(frontIndex)));
             _sections.Insert(sectionIndex + 1, new BallSection(sectionBalls.Skip(backIndex + 1)));
             _sections.RemoveAll(x => x.Balls.Count == 0);
-
+            _bulletLauncher.CreateBoom(sectionBalls[ballIndex].transform.position);
             return true;
         }
 

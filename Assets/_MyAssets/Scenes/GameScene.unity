@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1239,6 +1239,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1499333351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2029331025443530738, guid: c7cbc07358ed4654596150875e41d1ed, type: 3}
+  m_PrefabInstance: {fileID: 2095637165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351d56519abd74f42bdcfd283478a923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1499333352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3531018250072010578, guid: c7cbc07358ed4654596150875e41d1ed, type: 3}
@@ -1565,6 +1576,10 @@ PrefabInstance:
       propertyPath: _firePoint
       value: 
       objectReference: {fileID: 1499333352}
+    - target: {fileID: 2029331025443530738, guid: c7cbc07358ed4654596150875e41d1ed, type: 3}
+      propertyPath: _boomPrefab
+      value: 
+      objectReference: {fileID: 6104980844357626598, guid: 31c7e6871b2bf4fa59c086fa3fde1dad, type: 3}
     - target: {fileID: 3531018250072010578, guid: c7cbc07358ed4654596150875e41d1ed, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1670,6 +1685,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5925527660281088127, guid: e6420d8a8a4163a458ff3806905ea0dd, type: 3}
+      propertyPath: _bulletLauncher
+      value: 
+      objectReference: {fileID: 1499333351}
     - target: {fileID: 7833729906424162379, guid: e6420d8a8a4163a458ff3806905ea0dd, type: 3}
       propertyPath: m_Name
       value: Balls

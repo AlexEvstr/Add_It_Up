@@ -6,6 +6,7 @@ public class BulletLauncher : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firePoint; // точка выстрела
     [SerializeField] private Transform _aimArrow;  // стрелка-прицел
+    [SerializeField] private GameObject _boomPrefab;
 
     private Bullet _bullet;
     private bool _isAiming;
@@ -74,5 +75,12 @@ public class BulletLauncher : MonoBehaviour
     {
         _bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity, transform).GetComponent<Bullet>();
         _bullet.SetSprite(GameManager.Instance.GetRandomSprite());
+    }
+
+    public void CreateBoom(Vector2 position)
+    {
+        GameObject boom = Instantiate(_boomPrefab);
+        boom.transform.position = position;
+        Destroy(boom, 2.0f);
     }
 }
