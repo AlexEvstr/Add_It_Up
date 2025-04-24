@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TMP_Text _scoreLoseText;
     [SerializeField] private TMP_Text _winCoinsText;
     [SerializeField] private TMP_Text _loseCoinsText;
+    [SerializeField] private TMP_Text _plusScoreText;
+    [SerializeField] private GameObject _plusScoreObject;
 
     private void Awake()
     {
@@ -40,6 +43,16 @@ public class ScoreManager : MonoBehaviour
         _scoreGameText.text = _score.ToString();
         _scoreWinText.text = _score.ToString();
         _scoreLoseText.text = _score.ToString();
+        _plusScoreText.text = $"+{index * 10}";
+
+        StartCoroutine(ShowAndHidePlusScore());
+    }
+
+    private IEnumerator ShowAndHidePlusScore()
+    {
+        _plusScoreObject.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        _plusScoreObject.SetActive(false);
     }
 
     public void AddCoins()
