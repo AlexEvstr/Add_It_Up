@@ -44,11 +44,13 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        ScoreManager.Instance.AddCoins();
         _winWindow.SetActive(true);
     }
 
     public void Lose()
     {
+        ScoreManager.Instance.AddCoins();
         _retryWindow.SetActive(true);
     }
 

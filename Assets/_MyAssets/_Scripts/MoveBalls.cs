@@ -158,6 +158,7 @@ public class MoveBalls : MonoBehaviour
 
         if (count >= 3)
         {
+            ScoreManager.Instance.AddScore(count);
             // odstraneni kulicek z okna
             sectionBalls.GetRange(frontIndex, count).ForEach(x => Destroy(x.gameObject));
 

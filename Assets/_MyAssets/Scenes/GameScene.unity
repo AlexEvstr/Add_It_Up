@@ -4461,6 +4461,7 @@ GameObject:
   - component: {fileID: 1837936092}
   - component: {fileID: 1837936093}
   - component: {fileID: 5111372457272170555}
+  - component: {fileID: 5111372457272170556}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5808,6 +5809,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 135761315}
+--- !u!114 &5111372457272170556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837936091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b1de6e03bfa4b74bbb6ea11f683294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreGameText: {fileID: 80859458}
+  _scoreWinText: {fileID: 1076461224}
+  _scoreLoseText: {fileID: 389492071}
+  _winCoinsText: {fileID: 260358154}
+  _loseCoinsText: {fileID: 493862402}
 --- !u!114 &5429035377419011041
 MonoBehaviour:
   m_ObjectHideFlags: 0
