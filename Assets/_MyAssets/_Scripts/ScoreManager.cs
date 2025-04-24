@@ -1,12 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
     private int _score;
-    //[SerializeField] private TMP_Text _scoreText;
-
+    [SerializeField] private TMP_Text _scoreText;
 
     private void Awake()
     {

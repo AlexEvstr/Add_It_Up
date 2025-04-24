@@ -3,8 +3,7 @@
     "rootNamespace": "",
     "references": [
         "GUID:274dbf99e5ea3f045808a4966c0e7dec",
-        "GUID:26d8f64f53dbe4a48882516e3f534f2d",
-        "GUID:3a748f0cc40e6be42a9bab66aaa00ed6"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -13,7 +12,7 @@
     "precompiledReferences": [
         "DOTween.dll"
     ],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
