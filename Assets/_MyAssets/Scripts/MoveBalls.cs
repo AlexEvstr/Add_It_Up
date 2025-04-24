@@ -89,7 +89,11 @@ public class MoveBalls : MonoBehaviour
                         sectionBalls[i].Distance += _ballDiameter;
                     }
                 }
-
+                int totalBalls = _sections.Sum(section => section.Balls.Count);
+                if (totalBalls >= 21)
+                {
+                    GameManager.Instance.Lose();
+                }
                 break;
             }
         }
@@ -102,7 +106,6 @@ public class MoveBalls : MonoBehaviour
 
         for (var i = 0; i < lastSectionBalls.Count; i++)
         {
-            //lastSectionBalls[i].Distance = distance - i * _ballDiameter;
             lastSectionBalls[i].Distance = (distance - i * _ballDiameter) % _pathDistance;
         }
     }

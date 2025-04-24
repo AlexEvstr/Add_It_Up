@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _ballCount;
     [SerializeField] private float _ballSpeed;
     [SerializeField] private float _bulletSpeed;
-    [SerializeField] private int _bulletLoadTime;
+    [SerializeField] private float _bulletLoadTime;
     [SerializeField, Range(1, 5)] private int _lifeCount;
 
     [Header("Windows")]
@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _retryWindow;
     [SerializeField] private GameObject _winWindow;
     [SerializeField] private GameObject _pauseWindow;
+    [SerializeField] private SpriteRenderer[] _arrowSprites;
 
     public static GameManager Instance { get; private set; }
     public BGCcMath BgMath { get; private set; }
@@ -24,31 +25,13 @@ public class GameManager : MonoBehaviour
     public int BallCount => _ballCount;
     public float BallSpeed => _ballSpeed;
     public float BulletSpeed => _bulletSpeed;
-    public int BulletLoadTime => _bulletLoadTime;
-
-    private GameData _gameData;
+    public float BulletLoadTime => _bulletLoadTime;
 
     private void Awake()
     {
         Instance = this;
         BgMath = FindObjectOfType<BGCcMath>();
         MoveBallsScript = FindObjectOfType<MoveBalls>();
-
-        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        _gameData = GameData.Load() ?? new GameData();
-
-        if (_gameData.SceneIndex != sceneIndex)
-        {
-            _gameData.SceneIndex = sceneIndex;
-            _gameData.LifeCount = _lifeCount;
-            GameData.Save(_gameData);
-        }
-
-        for (var i = 0; i < _gameData.LifeCount; i++)
-        {
-            _lifeWindow.GetChild(i).gameObject.SetActive(true);
-        }
 
         Time.timeScale = 1;
     }
@@ -80,19 +63,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        _gameData.LifeCount -= 1;
-        _lifeWindow.GetChild(_gameData.LifeCount).gameObject.SetActive(false);
-
-        if (_gameData.LifeCount == 0)
-        {
-            GameData.Delete();
-            _gameOverWindow.SetActive(true);
-        }
-        else
-        {
-            GameData.Save(_gameData);
-            _retryWindow.SetActive(true);
-        }
+        _retryWindow.SetActive(true);
     }
 
     public bool IsPaused()
@@ -102,17 +73,17 @@ public class GameManager : MonoBehaviour
 
     public void MainMenuBtn_Click()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void RetryBtn_Click()
     {
-        SceneManager.LoadScene(_gameData.SceneIndex);
+        SceneManager.LoadScene("GameScene");
     }
 
     public void NextLevelBtn_Click()
     {
-        SceneManager.LoadScene(_gameData.SceneIndex + 1);
+        SceneManager.LoadScene("GameScene");
     }
 
     public void ContinueBtn_Click()
@@ -123,6 +94,11 @@ public class GameManager : MonoBehaviour
 
     public Sprite GetRandomSprite()
     {
-        return _sprites[Random.Range(0, _sprites.Length)];
+        Sprite randomSprite = _sprites[Random.Range(0, _sprites.Length)];
+        foreach (var item in _arrowSprites)
+        {
+            item.sprite = randomSprite;
+        }
+        return randomSprite;
     }
 }

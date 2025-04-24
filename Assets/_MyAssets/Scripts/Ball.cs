@@ -18,7 +18,7 @@ public class Ball : MonoBehaviour
             var pathLength = GameManager.Instance.BgMath.GetDistance();
             _distance = value % pathLength;
 
-            if (_distance < 0) _distance += pathLength; // защита от отрицательных
+            if (_distance < 0) _distance += pathLength;
 
             transform.position = GameManager.Instance.BgMath.CalcPositionByDistance(_distance);
         }

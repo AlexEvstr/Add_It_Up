@@ -12,6 +12,7 @@ public class LoadingBarRx : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         loadingImage.fillAmount = 0f;
         StartCoroutine(LoadProgress());
     }
