@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Sprite[] _sprites;
+    [SerializeField] private Sprite[] _spritesSet1;
+    [SerializeField] private Sprite[] _spritesSet2;
     [SerializeField] private int _ballCount;
     [SerializeField] private float _ballSpeed;
     [SerializeField] private float _bulletSpeed;
@@ -24,34 +25,40 @@ public class GameManager : MonoBehaviour
     public float BallSpeed => _ballSpeed;
     public float BulletSpeed => _bulletSpeed;
     public float BulletLoadTime => _bulletLoadTime;
+    private WindowAnimator _windowAnimator;
+
+    private Sprite[] _activeSpriteSet;
 
     private void Awake()
     {
         Instance = this;
         BgMath = FindObjectOfType<BGCcMath>();
         MoveBallsScript = FindObjectOfType<MoveBalls>();
+        int spriteSetIndex = PlayerPrefs.GetInt("SpriteSet", 1); // 1 - default
+        _activeSpriteSet = spriteSetIndex == 2 ? _spritesSet2 : _spritesSet1;
+        _windowAnimator = GetComponent<WindowAnimator>();
     }
 
     public void OpenPauseBtn()
     {
-        _pauseWindow.SetActive(true);
+        _windowAnimator.OpenWindow(_pauseWindow);
     }
 
     public void ClosePauseBtn()
     {
-        _pauseWindow.SetActive(false);
+        _windowAnimator.CloseWindow(_pauseWindow);
     }
 
     public void Win()
     {
         ScoreManager.Instance.AddCoins();
-        _winWindow.SetActive(true);
+        _windowAnimator.OpenWindow(_winWindow);
     }
 
     public void Lose()
     {
         ScoreManager.Instance.AddCoins();
-        _retryWindow.SetActive(true);
+        _windowAnimator.OpenWindow(_retryWindow);
     }
 
     public bool IsAnyWindowOpen()
@@ -77,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     public Sprite GetRandomSprite()
     {
-        Sprite randomSprite = _sprites[Random.Range(0, _sprites.Length)];
+        Sprite randomSprite = _activeSpriteSet[Random.Range(0, _activeSpriteSet.Length)];
         foreach (var item in _arrowSprites)
         {
             item.sprite = randomSprite;
