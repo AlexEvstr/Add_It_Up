@@ -16,9 +16,10 @@ public class DailyBonusManager : MonoBehaviour
         _windowAnimator = GetComponent<WindowAnimator>();
         if (ShouldShowBonus())
         {
-            _windowAnimator.OpenWindow(dailyBonusWindow);
-            _totalCoins = PlayerPrefs.GetInt("TotalCoins");
+            _windowAnimator.OpenWindow(dailyBonusWindow);  
         }
+        _totalCoins = PlayerPrefs.GetInt("TotalCoins");
+        _coinsText.text = _totalCoins.ToString();
     }
 
     public void OnTakeBonus()

@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         BgMath = FindObjectOfType<BGCcMath>();
         MoveBallsScript = FindObjectOfType<MoveBalls>();
-        int spriteSetIndex = PlayerPrefs.GetInt("SpriteSet", 1); // 1 - default
-        _activeSpriteSet = spriteSetIndex == 2 ? _spritesSet2 : _spritesSet1;
+        int spriteSetIndex = PlayerPrefs.GetInt("SpriteSet", 0); // 1 - default
+        _activeSpriteSet = spriteSetIndex == 1 ? _spritesSet2 : _spritesSet1;
         _windowAnimator = GetComponent<WindowAnimator>();
     }
 
