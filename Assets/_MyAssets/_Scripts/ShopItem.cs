@@ -81,6 +81,7 @@ public class ShopItem : MonoBehaviour
         {
             PlayerPrefs.SetInt(BackgroundKey, itemIndex);
             UIShopManager.Instance.DeselectAllBackgrounds();
+            UIShopManager.Instance.UpdateBG(itemIndex);
         }
         else
         {

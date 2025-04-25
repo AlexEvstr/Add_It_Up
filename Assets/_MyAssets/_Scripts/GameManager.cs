@@ -1,6 +1,7 @@
 using BansheeGz.BGSpline.Components;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _winWindow;
     [SerializeField] private GameObject _pauseWindow;
     [SerializeField] private SpriteRenderer[] _arrowSprites;
+    [SerializeField] private SpriteRenderer _background;
+    [SerializeField] private Image _fadeImage;
+    [SerializeField] private Sprite[] _bgSprites;
 
     public static GameManager Instance { get; private set; }
     public BGCcMath BgMath { get; private set; }
@@ -37,6 +41,8 @@ public class GameManager : MonoBehaviour
         int spriteSetIndex = PlayerPrefs.GetInt("SpriteSet", 0); // 1 - default
         _activeSpriteSet = spriteSetIndex == 1 ? _spritesSet2 : _spritesSet1;
         _windowAnimator = GetComponent<WindowAnimator>();
+        _background.sprite = _bgSprites[PlayerPrefs.GetInt("SelectedBackground", 0)];
+        _fadeImage.sprite = _bgSprites[PlayerPrefs.GetInt("SelectedBackground", 0)];
     }
 
     public void OpenPauseBtn()

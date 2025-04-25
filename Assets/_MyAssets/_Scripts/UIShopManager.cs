@@ -9,6 +9,8 @@ public class UIShopManager : MonoBehaviour
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
     [SerializeField] private TMP_Text coinText;
+    [SerializeField] private Image[] _backgrounds;
+    [SerializeField] private Sprite[] _backgroundSprites;
 
     private int currentIndex;
 
@@ -24,6 +26,7 @@ public class UIShopManager : MonoBehaviour
         currentIndex = 0;
         UpdateCardVisibility();
         UpdateArrowState();
+        UpdateBG(PlayerPrefs.GetInt("SelectedBackground", 0));
     }
 
     public void ShowNext()
@@ -96,6 +99,14 @@ public class UIShopManager : MonoBehaviour
         coins += 100;
         PlayerPrefs.SetInt("TotalCoins", coins);
         coinText.text = coins.ToString();
+    }
+
+    public void UpdateBG(int index)
+    {
+        foreach (var item in _backgrounds)
+        {
+            item.sprite = _backgroundSprites[index];
+        }
     }
 
 }
