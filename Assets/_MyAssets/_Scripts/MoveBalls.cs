@@ -40,24 +40,6 @@ public class MoveBalls : MonoBehaviour
             return;
         }
 
-        //if (_sections[0].Balls[0].Distance >= _pathDistance) return;
-
-        //if (_sections[0].Balls[0].Distance >= _pathDistance)
-        //{
-        //    foreach (var section in _sections)
-        //    {
-        //        foreach (var ball in section.Balls)
-        //        {
-        //            ball.Distance %= _pathDistance; // ??????????? ? ???????? ?????
-        //        }
-        //    }
-        //}
-
-
-
-
-
-
         MoveLastSectionBalls();
         JoinStoppedSections();
     }
@@ -83,6 +65,7 @@ public class MoveBalls : MonoBehaviour
                         sectionBalls[i].Distance += _ballDiameter;
                     }
                 }
+                AudioController.Instance.PlayButtonSound();
                 int totalBalls = _sections.Sum(section => section.Balls.Count);
                 if (totalBalls >= 21)
                 {
@@ -172,6 +155,7 @@ public class MoveBalls : MonoBehaviour
             _sections.Insert(sectionIndex + 1, new BallSection(sectionBalls.Skip(backIndex + 1)));
             _sections.RemoveAll(x => x.Balls.Count == 0);
             _bulletLauncher.CreateBoom(sectionBalls[ballIndex].transform.position);
+            AudioController.Instance.PlayExplosionSound();
             return true;
         }
 

@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         AddWin();
         ScoreManager.Instance.AddCoins();
         _windowAnimator.OpenWindow(_winWindow);
+        AudioController.Instance.PlayEndGameSound();
     }
 
     public void Lose()
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         AddGame();
         ScoreManager.Instance.AddCoins();
         _windowAnimator.OpenWindow(_retryWindow);
+        AudioController.Instance.PlayEndGameSound();
     }
 
     public bool IsAnyWindowOpen()

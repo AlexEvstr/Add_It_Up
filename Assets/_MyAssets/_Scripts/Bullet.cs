@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
 
     public void Fire()
     {
+        AudioController.Instance.PlayShootSound();
         var target = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
         target.z = 0;
         
