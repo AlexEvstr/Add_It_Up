@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         BgMath = FindObjectOfType<BGCcMath>();
         MoveBallsScript = FindObjectOfType<MoveBalls>();
-        int spriteSetIndex = PlayerPrefs.GetInt("SpriteSet", 0); // 1 - default
+        int spriteSetIndex = PlayerPrefs.GetInt("SpriteSet", 0);
         _activeSpriteSet = spriteSetIndex == 1 ? _spritesSet2 : _spritesSet1;
         _windowAnimator = GetComponent<WindowAnimator>();
         _background.sprite = _bgSprites[PlayerPrefs.GetInt("SelectedBackground", 0)];
@@ -57,12 +57,17 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        if (PlayerPrefs.GetInt("SpriteSet", 0) == 1) PlayerPrefs.SetInt("Achieve_1", 1);
+        AddGame();
+        AddWin();
         ScoreManager.Instance.AddCoins();
         _windowAnimator.OpenWindow(_winWindow);
     }
 
     public void Lose()
     {
+        if (PlayerPrefs.GetInt("SpriteSet", 0) == 1) PlayerPrefs.SetInt("Achieve_1", 1);
+        AddGame();
         ScoreManager.Instance.AddCoins();
         _windowAnimator.OpenWindow(_retryWindow);
     }
@@ -96,5 +101,21 @@ public class GameManager : MonoBehaviour
             item.sprite = randomSprite;
         }
         return randomSprite;
+    }
+
+    public void AddGame()
+    {
+        int gamesPlayed = PlayerPrefs.GetInt("GamesPlayed", 0);
+        gamesPlayed++;
+        PlayerPrefs.SetInt("GamesPlayed", gamesPlayed);
+        if (gamesPlayed >= 15) PlayerPrefs.SetInt("Achieve_3", 1);
+    }
+
+    public void AddWin()
+    {
+        int winsCount = PlayerPrefs.GetInt("WinsCount", 0);
+        winsCount++;
+        PlayerPrefs.SetInt("WinsCount", winsCount);
+        if (winsCount >= 5) PlayerPrefs.SetInt("Achieve_2", 1);
     }
 }

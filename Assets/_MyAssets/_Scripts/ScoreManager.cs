@@ -62,5 +62,8 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("TotalCoins", _totalCoins);
         _winCoinsText.text = _coins.ToString();
         _loseCoinsText.text = _coins.ToString();
+
+        if (_score >= 300) PlayerPrefs.SetInt("Achieve_4", 1);
+        if (_score >= 1000) PlayerPrefs.SetInt("Achieve_5", 1);
     }
 }
