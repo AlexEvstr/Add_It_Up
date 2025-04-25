@@ -68,10 +68,12 @@ public class ShopItem : MonoBehaviour
             isPurchased = true;
             Equip();
             UIShopManager.Instance.UpdateCoinText();
+            AudioController.Instance.PlayBuySound();
         }
         else
         {
             StartCoroutine(ShowNotEnough());
+            AudioController.Instance.PlayNoMoneySound();
         }
     }
 
@@ -89,6 +91,7 @@ public class ShopItem : MonoBehaviour
             UIShopManager.Instance.DeselectAllProjectiles();
         }
         SetEquippedState();
+        AudioController.Instance.PlayButtonSound();
     }
 
     public void SetEquipState()
